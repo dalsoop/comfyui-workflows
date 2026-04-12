@@ -1,0 +1,151 @@
+# ComfyUI Custom Nodes — ai-img (60105)
+# Last synced: 2026-04-12
+
+nodes:
+  # --- LLM / Prompt ---
+  - name: comfyui-ollama
+    repo: https://github.com/stavsap/comfyui-ollama.git
+    commit: 6db7560
+    description: Ollama LLM integration (translation, prompt enhancement)
+
+  # --- Manager ---
+  - name: comfyui-manager
+    repo: https://github.com/ltdrdata/ComfyUI-Manager.git
+    commit: bbafbb1
+    description: Node/model manager
+
+  # --- Image Processing ---
+  - name: ComfyUI-Impact-Pack
+    repo: https://github.com/ltdrdata/ComfyUI-Impact-Pack.git
+    commit: 6a517eb
+    description: Detection, segmentation, impact processing
+
+  - name: ComfyUI_IPAdapter_plus
+    repo: https://github.com/cubiq/ComfyUI_IPAdapter_plus.git
+    commit: a0f451a
+    description: IP-Adapter for style/face transfer
+
+  - name: ComfyUI-Florence2
+    repo: https://github.com/kijai/ComfyUI-Florence2.git
+    commit: 9acc6e9
+    description: Florence2 vision model
+
+  - name: ComfyUI-SAM2
+    repo: https://github.com/neverbiasu/ComfyUI-SAM2.git
+    commit: e75eabc
+    description: Segment Anything Model 2
+
+  - name: comfyui_controlnet_aux
+    repo: https://github.com/Fannovel16/comfyui_controlnet_aux.git
+    commit: 95a13e2
+    description: ControlNet preprocessors
+
+  # --- Inpainting / Removal ---
+  - name: comfyui-inpaint-nodes
+    repo: https://github.com/Acly/comfyui-inpaint-nodes.git
+    commit: dc7ca75
+    description: Inpainting nodes
+
+  - name: comfyui-lama-remover
+    repo: https://github.com/Layer-norm/comfyui-lama-remover.git
+    commit: 070c022
+    description: LaMa object removal
+
+  - name: ComfyUI_ProPainter_Nodes
+    repo: https://github.com/daniabib/ComfyUI_ProPainter_Nodes.git
+    commit: 9c27d5a
+    description: ProPainter video inpainting
+
+  # --- Video ---
+  - name: ComfyUI-AnimateDiff-Evolved
+    repo: https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved.git
+    commit: d8d163c
+    description: AnimateDiff animation
+
+  - name: ComfyUI-LTXVideo
+    repo: https://github.com/Lightricks/ComfyUI-LTXVideo.git
+    commit: 531512f
+    description: LTX Video generation
+
+  - name: ComfyUI-WanVideoWrapper
+    repo: https://github.com/kijai/ComfyUI-WanVideoWrapper.git
+    commit: df8f3e4
+    description: Wan Video wrapper
+
+  - name: comfyui-wan-i2v-control
+    repo: https://github.com/shootthesound/comfyui-wan-i2v-control.git
+    commit: e35561d
+    description: Wan image-to-video control
+
+  - name: ComfyUI-VideoHelperSuite
+    repo: https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git
+    commit: 2984ec4
+    description: Video loading/saving/preview helpers
+
+  - name: ComfyUI-Frame-Interpolation
+    repo: https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git
+    commit: 26545cc
+    description: Frame interpolation (RIFE, etc.)
+
+  - name: ComfyUI-SeedVR2_VideoUpscaler
+    repo: https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler.git
+    commit: 4490bd1
+    description: SeedVR2 video upscaler
+
+  - name: ComfyUI-VideoUpscale_WithModel
+    repo: https://github.com/ShmuelRonen/ComfyUI-VideoUpscale_WithModel.git
+    commit: 23f4602
+    description: Video upscaling with model
+
+  # --- Utility ---
+  - name: ComfyMath
+    repo: https://github.com/evanspearman/ComfyMath.git
+    commit: c011772
+    description: Math operations
+
+  - name: ComfyUI-KJNodes
+    repo: https://github.com/kijai/ComfyUI-KJNodes.git
+    commit: 068d4fe
+    description: Utility node pack
+
+  - name: ComfyUI_Fill-Nodes
+    repo: https://github.com/filliptm/ComfyUI_Fill-Nodes.git
+    commit: 3a6598f
+    description: Fill utility nodes
+
+  - name: ComfyUI-HQ-Image-Save
+    repo: https://github.com/spacepxl/ComfyUI-HQ-Image-Save.git
+    commit: 44b0c6f
+    description: High quality image save (EXR, TIFF)
+
+  - name: ComfyUI-CoCoTools_IO
+    repo: https://github.com/Conor-Collins/ComfyUI-CoCoTools_IO.git
+    commit: f456539
+    description: IO tools
+
+  - name: ComfyUI-ParallelAnything
+    repo: https://github.com/FearL0rd/ComfyUI-ParallelAnything.git
+    commit: 9337a45
+    description: Parallel processing
+
+  # --- Sampling / Advanced ---
+  - name: ComfyUI-CacheDiT
+    repo: https://github.com/Jasonzzt/ComfyUI-CacheDiT.git
+    commit: b7d0136
+    description: DiT caching for faster generation
+
+  - name: RES4LYF
+    repo: https://github.com/ClownsharkBatwing/RES4LYF.git
+    commit: 0dc91c0
+    description: Advanced samplers and schedulers
+
+  # --- Other ---
+  - name: comfyui-vrgamedevgirl
+    repo: https://github.com/vrgamegirl19/comfyui-vrgamedevgirl.git
+    commit: 662da70
+    description: VR game dev nodes
+
+  - name: overtli-studio-suite
+    repo: https://github.com/OvertliDS/overtli-studio-suite.git
+    commit: 1bbfe31
+    description: Overtli studio suite
