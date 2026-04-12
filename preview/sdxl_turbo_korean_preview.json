@@ -1,0 +1,192 @@
+{
+  "last_node_id": 10,
+  "last_link_id": 12,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "OllamaConnectivityV2",
+      "pos": [0, 0],
+      "size": [315, 150],
+      "properties": {},
+      "widgets_values": [
+        "http://10.0.60.1:11434",
+        "translategemma:12b",
+        5,
+        "minutes"
+      ],
+      "outputs": [
+        {"name": "connectivity", "type": "OLLAMA_CONNECTIVITY", "links": [1], "slot_index": 0}
+      ]
+    },
+    {
+      "id": 2,
+      "type": "OllamaGenerateV2",
+      "pos": [400, 0],
+      "size": [400, 300],
+      "properties": {},
+      "widgets_values": [
+        "You are a professional translator. Translate the following Korean text to English. Output ONLY the English translation, nothing else. Do not add any explanation or commentary.",
+        "창가에 앉아있는 귀여운 고양이, 따뜻한 햇살, 사실적인 사진",
+        false,
+        false,
+        "text"
+      ],
+      "inputs": [
+        {"name": "connectivity", "type": "OLLAMA_CONNECTIVITY", "link": 1}
+      ],
+      "outputs": [
+        {"name": "result", "type": "STRING", "links": [2], "slot_index": 0},
+        {"name": "thinking", "type": "STRING", "links": null},
+        {"name": "context", "type": "OLLAMA_CONTEXT", "links": null},
+        {"name": "meta", "type": "OLLAMA_META", "links": null}
+      ]
+    },
+    {
+      "id": 3,
+      "type": "CheckpointLoaderSimple",
+      "pos": [0, 400],
+      "size": [315, 98],
+      "properties": {},
+      "widgets_values": [
+        "sd_xl_turbo_1.0_fp16.safetensors"
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [3], "slot_index": 0},
+        {"name": "CLIP", "type": "CLIP", "links": [4, 5], "slot_index": 1},
+        {"name": "VAE", "type": "VAE", "links": [9], "slot_index": 2}
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [850, 0],
+      "size": [400, 200],
+      "title": "Positive Prompt (Translated)",
+      "properties": {},
+      "widgets_values": [""],
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 4},
+        {"name": "text", "type": "STRING", "link": 2, "widget": {"name": "text"}}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [6], "slot_index": 0}
+      ]
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [850, 250],
+      "size": [400, 100],
+      "title": "Negative Prompt",
+      "properties": {},
+      "widgets_values": [""],
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 5}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [7], "slot_index": 0}
+      ]
+    },
+    {
+      "id": 6,
+      "type": "EmptyLatentImage",
+      "pos": [850, 400],
+      "size": [315, 106],
+      "properties": {},
+      "widgets_values": [512, 512, 1],
+      "outputs": [
+        {"name": "LATENT", "type": "LATENT", "links": [8], "slot_index": 0}
+      ]
+    },
+    {
+      "id": 7,
+      "type": "KSampler",
+      "pos": [1300, 0],
+      "size": [315, 262],
+      "properties": {},
+      "widgets_values": [
+        0,
+        "randomize",
+        1,
+        1.0,
+        "euler_ancestral",
+        "normal",
+        1.0
+      ],
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 3},
+        {"name": "positive", "type": "CONDITIONING", "link": 6},
+        {"name": "negative", "type": "CONDITIONING", "link": 7},
+        {"name": "latent_image", "type": "LATENT", "link": 8}
+      ],
+      "outputs": [
+        {"name": "LATENT", "type": "LATENT", "links": [10], "slot_index": 0}
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [1700, 0],
+      "size": [210, 46],
+      "properties": {},
+      "inputs": [
+        {"name": "samples", "type": "LATENT", "link": 10},
+        {"name": "vae", "type": "VAE", "link": 9}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [11], "slot_index": 0}
+      ]
+    },
+    {
+      "id": 9,
+      "type": "PreviewImage",
+      "pos": [1950, 0],
+      "size": [512, 512],
+      "properties": {},
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 11}
+      ]
+    },
+    {
+      "id": 10,
+      "type": "Note",
+      "pos": [0, -150],
+      "size": [700, 50],
+      "properties": {},
+      "widgets_values": ["Korean Prompt Preview: Type Korean in Ollama Generate prompt -> auto-translates -> generates preview image"]
+    }
+  ],
+  "links": [
+    [1, 1, 0, 2, 0, "OLLAMA_CONNECTIVITY"],
+    [2, 2, 0, 4, 1, "STRING"],
+    [3, 3, 0, 7, 0, "MODEL"],
+    [4, 3, 1, 4, 0, "CLIP"],
+    [5, 3, 1, 5, 0, "CLIP"],
+    [6, 4, 0, 7, 1, "CONDITIONING"],
+    [7, 5, 0, 7, 2, "CONDITIONING"],
+    [8, 6, 0, 7, 3, "LATENT"],
+    [9, 3, 2, 8, 1, "VAE"],
+    [10, 7, 0, 8, 0, "LATENT"],
+    [11, 8, 0, 9, 0, "IMAGE"]
+  ],
+  "groups": [
+    {
+      "title": "Korean to English Translation (TranslateGemma 12B)",
+      "bounding": [-20, -50, 830, 400],
+      "color": "#3f789e"
+    },
+    {
+      "title": "SDXL Turbo Preview (1 step, 512x512)",
+      "bounding": [830, -50, 1200, 600],
+      "color": "#2a363b"
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6,
+      "offset": [100, 300]
+    }
+  },
+  "version": 0.4
+}
