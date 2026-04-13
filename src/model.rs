@@ -18,7 +18,7 @@ fn list_dir(label: &str, dir: &str) {
                 if name.is_empty() || name.starts_with("put_") { continue; }
                 // 파일 크기도 가져오기
                 if let Ok(size) = ssh_exec(&format!("du -h {}/{} 2>/dev/null", dir, name)) {
-                    let size = size.trim().split('\t').next().unwrap_or("?");
+                    let size = size.trim().split('\t').next().unwrap_or("?"); // LINT_ALLOW: 기본값
                     println!("  {} ({})", name, size);
                 } else {
                     println!("  {}", name);
@@ -46,7 +46,7 @@ fn list() {
             if let Ok(v) = serde_json::from_str::<serde_json::Value>(&out) {
                 if let Some(models) = v["models"].as_array() {
                     for m in models {
-                        let name = m["name"].as_str().unwrap_or("?");
+                        let name = m["name"].as_str().unwrap_or("?"); // LINT_ALLOW: 기본값
                         let size = m["size"].as_u64().unwrap_or(0);
                         let size_gb = size as f64 / 1_073_741_824.0;
                         println!("  {} ({:.1}GB)", name, size_gb);

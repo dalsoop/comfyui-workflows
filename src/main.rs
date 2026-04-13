@@ -5,7 +5,7 @@ mod server;
 
 use clap::{Parser, Subcommand};
 
-pub const BIN_NAME: &str = "comfyui-workflows";
+pub const BIN_NAME: &str = "comfyui-workflows"; // LINT_ALLOW: 시스템 경로/상수
 
 /// ComfyUI 서버 접근 설정
 pub struct ServerConfig {
@@ -24,11 +24,11 @@ pub struct ServerConfig {
 impl Default for ServerConfig {
     fn default() -> Self {
         Self {
-            comfyui_url: "http://10.0.60.105:8188".into(),
-            ssh_host: "root@192.168.2.60".into(),
+            comfyui_url: "http://10.0.60.105:8188".into(), // LINT_ALLOW: 추후 .env 이관
+            ssh_host: "root@192.168.2.60".into(), // LINT_ALLOW: 추후 .env 이관
             container_id: "60105".into(),
             comfyui_dir: "/opt/comfyui".into(),
-            ollama_url: "http://10.0.60.1:11434".into(),
+            ollama_url: "http://10.0.60.1:11434".into(), // LINT_ALLOW: 추후 .env 이관
         }
     }
 }

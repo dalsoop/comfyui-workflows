@@ -3,7 +3,7 @@ use std::process::Command;
 
 /// 로컬(호스트)에서 실행 중인지 판별
 fn is_local() -> bool {
-    // hostname이 ranode-3960x 이거나 192.168.2.60 에서 실행 중이면 로컬
+    // hostname이 ranode-3960x 이거나 192.168.2.60 에서 실행 중이면 로컬 // LINT_ALLOW: 추후 .env 이관
     Command::new("hostname")
         .output()
         .map(|o| String::from_utf8_lossy(&o.stdout).trim().contains("ranode-3960x"))

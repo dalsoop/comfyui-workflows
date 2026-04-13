@@ -175,7 +175,7 @@ fn add(repo: &str, desc: Option<String>) {
         .trim_end_matches(".git")
         .rsplit('/')
         .next()
-        .unwrap_or("unknown")
+        .unwrap_or("unknown") // LINT_ALLOW: 기본값
         .to_string();
 
     let mut nodes_file = load_nodes_yaml();

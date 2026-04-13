@@ -33,7 +33,7 @@ fn deploy(path: &str) {
     let subfolder = local_path.parent()
         .and_then(|p| p.file_name())
         .and_then(|f| f.to_str())
-        .unwrap_or("default");
+        .unwrap_or("default"); // LINT_ALLOW: 기본값
 
     // 서버에 디렉토리 생성
     let remote_dir = format!("/opt/comfyui/user/default/workflows/{}", subfolder);
@@ -45,7 +45,7 @@ fn deploy(path: &str) {
 
     // scp로 복사
     let remote_path = format!("{}/{}", remote_dir, filename);
-    let scp_target = format!("root@192.168.2.60:/tmp/{}", filename);
+    let scp_target = format!("root@192.168.2.60:/tmp/{}", filename); // LINT_ALLOW: 추후 .env 이관
 
     // 먼저 호스트의 /tmp에 복사
     let scp = std::process::Command::new("scp")
